@@ -114,7 +114,7 @@
 
         console.log(window.innerWidth)
         buttonSave.onclick = function(){
-            window.open(`${apiUrl}?access_key=${apiKey}&width=${window.innerWidth}&height=${window.innerHeight}&url=${window.location.href}?data=${text.placeholder}`);
+            window.open(`${apiUrl}?access_key=${apiKey}&quality=100&width=${window.innerWidth}&height=${window.innerHeight}&url=${window.location.href}?data=${text.placeholder}`);
         };
         buttonComp.onclick = async function(){
             buttonComp.innerHTML = "Working..."

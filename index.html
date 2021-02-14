@@ -107,9 +107,15 @@
         const text = document.getElementById('textarea_output');
 
         const urls = Array('https://complimentr.com/api', 'https://8768zwfurd.execute-api.us-east-1.amazonaws.com/v1/compliments')
+        const apiKey = '9d9efad1652d45de9e8efe0b9fb6b151';
+        const apiUrl = 'https://api.apiflash.com/v1/urltoimage'
+
+        if (window.location.search.data != undefined) {
+            text.placeholder = window.location.search.data;
+        }
 
         buttonSave.onclick = function(){
-            window.open(`https://api.apiflash.com/v1/urltoimage?access_key=9d9efad1652d45de9e8efe0b9fb6b151&url=${window.location.href}`);
+            window.open(`${apiUrl}?access_key=${apiKey}&url=${window.location.href}/data=${text.placeholder}`);
         };
         buttonComp.onclick = async function(){
             buttonComp.innerHTML = "Working..."

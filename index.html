@@ -110,12 +110,12 @@
         const apiKey = '9d9efad1652d45de9e8efe0b9fb6b151';
         const apiUrl = 'https://api.apiflash.com/v1/urltoimage'
 
-        if (window.location.search.data != undefined) {
-            text.placeholder = window.location.search.data;
-        }
+        // if (window.location.search.data != undefined) {
+        //     text.placeholder = window.location.search.data;
+        // }
 
         buttonSave.onclick = function(){
-            window.open(`${apiUrl}?access_key=${apiKey}&url=${window.location.href}?data=${text.placeholder}`);
+            window.open(`${apiUrl}?access_key=${apiKey}&url=${window.location.href}`);
         };
         buttonComp.onclick = async function(){
             buttonComp.innerHTML = "Working..."

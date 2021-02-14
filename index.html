@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craig 2.0</title>
+</head>
+<body>
+    <header>
+        <h1 id="h1_title">Craig 2.0</h1>
+    </header>
+    <div class="craig_gui">
+        <textarea id="textarea_output" placeholder="self esteme machine" readonly></textarea>
+        <div class="button_container">
+            <button id="button_comp" class="bttn">Click dumbass</button>
+            <button id="button_save" class="bttn">Save Result</button>
+        </div>
+    </div>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background-image: url('https://i.ibb.co/qdHYDZV/chem.jpg');
+            background-size: 2.5em;
+        }
+
+        #h1_title {
+            font-family: Lobster, sans-serif;
+            font-size: 4.5rem;
+            text-align: center;
+
+            color: floralwhite;
+            padding: 0.1em 0;
+            text-shadow:1px 6px 8px black;
+            cursor: text;
+        }
+
+        .craig_gui {
+            margin: 1em 1em;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .button_container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bttn {
+            font-family: monospace, sans-serif;
+            font-size: 1.3rem;
+
+            color: grey;
+            background-color: white;
+
+            border: 5px solid white;
+            border-radius: 5px;
+            box-shadow: 0px 5px 10px #211c11b0;
+            
+            width: 8em;
+            height: 2.5em;
+            
+            cursor: pointer;
+        }
+
+        #textarea_output { 
+                resize: vertical;
+                text-transform: capitalize;
+                font-size: 1.2rem;
+
+                width: 100%;
+                min-height: 10em;
+                padding: 0.2em;
+
+                border-radius: 3px;
+                box-shadow: 0px 5px 10px #211c11b0;
+        }
+
+        #button_save {
+            margin:1em 0 0 0.5em;
+        }
+
+        #button_comp {
+            margin:1em 0 0.5em 0;
+        }
+        
+    </style>
+
+    <script>
+        // import defaultExport from 'html2canvas';
+        
+        function httpGet(theUrl) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, false ); 
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
+        }
+
+        const buttonSave = document.getElementById('button_save');
+        const buttonComp = document.getElementById('button_comp');
+        const text = document.getElementById('textarea_output');
+
+        const urls = Array('https://complimentr.com/api', 'https://8768zwfurd.execute-api.us-east-1.amazonaws.com/v1/compliments')
+
+        buttonSave.onclick = function(){
+            window.open(`https://api.apiflash.com/v1/urltoimage?access_key=9d9efad1652d45de9e8efe0b9fb6b151&url=${window.location.href}`);
+        };
+        buttonComp.onclick = async function(){
+            buttonComp.innerHTML = "Working..."
+            buttonComp.style.opacity = 0.85;
+            buttonComp.disabled = true;
+
+            let indx = Math.floor(Math.random() * urls.length);
+            let promise = new Promise((res, rej) => {setTimeout(() => res(httpGet(urls[indx])), 1000)});
+            let result = await promise;
+            
+            if (JSON.parse(result).compliment == undefined) {text.placeholder = result.substring(1, result.length-1)} 
+            else {text.placeholder = JSON.parse(result).compliment}
+
+            buttonComp.innerHTML = "Click dumbass"
+            buttonComp.style.opacity = 1;
+            buttonComp.disabled = false;
+        };
+    </script>
+</body>
+</html>

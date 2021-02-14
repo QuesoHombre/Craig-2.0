@@ -91,10 +91,7 @@
         }
         
     </style>
-
     <script>
-        // import defaultExport from 'html2canvas';
-        
         function httpGet(theUrl) {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open( "GET", theUrl, false ); 
@@ -124,9 +121,9 @@
         new URLSearchParams(window.location.search).forEach(i => {text.placeholder = i});
 
         buttonSave.onclick = function(){
-            downloadFile(`${apiUrl}?access_key=${apiKey}&quality=100&width=${window.innerWidth}&height=${window.innerHeight}&url=${window.location.href}?data=${text.placeholder}`)
             window.open(`${apiUrl}?access_key=${apiKey}&quality=100&width=${window.innerWidth}&height=${window.innerHeight}&url=${window.location.href}?data=${text.placeholder}`);
         };
+
         buttonComp.onclick = async function(){
             buttonComp.innerHTML = "Working..."
             buttonComp.style.opacity = 0.85;

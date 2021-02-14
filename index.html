@@ -102,6 +102,17 @@
             return xmlHttp.responseText;
         }
 
+        function downloadFile(url) {
+            const a = document.createElement("a");
+            a.style.display = "none";
+            document.body.appendChild(a);
+            
+            a.href = "url";
+            a.download = "Download"
+            a.click();
+            document.body.removeChild(a);
+        }
+
         const buttonSave = document.getElementById('button_save');
         const buttonComp = document.getElementById('button_comp');
         const text = document.getElementById('textarea_output');
@@ -110,10 +121,10 @@
         const apiKey = '9d9efad1652d45de9e8efe0b9fb6b151';
         const apiUrl = 'https://api.apiflash.com/v1/urltoimage'
 
-        new URLSearchParams(window.location.search).forEach(i => {text.placeholder = i})
+        new URLSearchParams(window.location.search).forEach(i => {text.placeholder = i});
 
-        console.log(window.innerWidth)
         buttonSave.onclick = function(){
+            downloadFile(`${apiUrl}?access_key=${apiKey}&quality=100&width=${window.innerWidth}&height=${window.innerHeight}&url=${window.location.href}?data=${text.placeholder}`)
             window.open(`${apiUrl}?access_key=${apiKey}&quality=100&width=${window.innerWidth}&height=${window.innerHeight}&url=${window.location.href}?data=${text.placeholder}`);
         };
         buttonComp.onclick = async function(){

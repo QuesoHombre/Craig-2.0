@@ -115,7 +115,7 @@
         }
 
         buttonSave.onclick = function(){
-            window.open(`${apiUrl}?access_key=${apiKey}&url=${window.location.href}/data=${text.placeholder}`);
+            window.open(`${apiUrl}?access_key=${apiKey}&url=${window.location.href}?data=${text.placeholder}`);
         };
         buttonComp.onclick = async function(){
             buttonComp.innerHTML = "Working..."
